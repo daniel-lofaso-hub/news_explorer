@@ -1,0 +1,29 @@
+.search-form {
+  color: white;
+  width: 608px;
+  margin: 0 auto;
+}
+
+.search-form__search-bar {
+  position: relative;
+}
+
+.search-form__input {
+  width: 608px;
+  height: 64px;
+  border-radius: 100px;
+  border: none;
+  padding: 0;
+}
+
+.search-form__submit {
+  width: 168px;
+  height: 64px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 100px;
+  border: none;
+  background-color: #2f71e5;
+  color: white;
+}
