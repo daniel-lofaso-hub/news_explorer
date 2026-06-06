@@ -2,4 +2,33 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 104px 0;
+}
+
+.navigation__title {
+  padding: 30px 0 26px;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+}
+
+.navigation__nav-bar {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.navigation__nav-link {
+  padding: 30px 0 26px;
+  color: white;
+  text-decoration: none;
+}
+
+.navigation__signin-btn {
+  margin-left: 42px;
+  width: 176px;
+  height: 48px;
+  color: white;
+  border-radius: 100px;
+  border: solid 1px white;
+  background-color: transparent;
 }
