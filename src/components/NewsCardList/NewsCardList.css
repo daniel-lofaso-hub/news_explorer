@@ -1,0 +1,17 @@
+.cards {
+  background-color: #f5f6f7;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, 400px);
+  justify-content: center;
+}
+
+.cards__more-btn {
+  display: block;
+  margin: 64px auto 80px;
+  width: 288px;
+  height: 64px;
+  border: none;
+  background-color: #e8e8e8;
+  border-radius: 100px;
+}

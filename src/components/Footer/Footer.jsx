@@ -21,13 +21,21 @@ function Footer() {
             className="footer__link"
             href="https://github.com/daniel-lofaso-hub"
           >
-            GitHub
+            <img
+              className="footer__social-icon"
+              alt="GitHub"
+              src="../../src/assets/github.svg"
+            />
           </a>
           <a
             className="footer__link"
             href="https://linkedin.com/in/daniel-lofaso/"
           >
-            IN
+            <img
+              className="footer__social-icon"
+              alt="LinkedIn"
+              src="../../src/assets/linked-in.svg"
+            />
           </a>
         </div>
       </div>

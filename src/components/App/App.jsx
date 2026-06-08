@@ -1,19 +1,20 @@
 import { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
-import SearchForm from "../SearchForm/SearchForm";
-import About from "../About/About";
+import Main from "../Main/Main";
+import SavedNews from "../SavedNews/SavedNews";
 import Footer from "../Footer/Footer";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="page">
-      <div className="page__header">
-        <Header isLoggedIn={isLoggedIn} />
-        <SearchForm />
-      </div>
-      <About />
+      <Header isLoggedIn={isLoggedIn} />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/saved-news" element={<SavedNews />} />
+      </Routes>
       <Footer />
     </div>
   );

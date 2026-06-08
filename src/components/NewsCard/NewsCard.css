@@ -1,0 +1,33 @@
+.card {
+  height: 576px;
+  width: 400px;
+  border-radius: 16px;
+  background-color: white;
+  list-style: none;
+  position: relative;
+}
+
+.card__image {
+  height: 272px;
+  width: 400px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.card__bookmark {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  border: none;
+  top: 24px;
+  right: 24px;
+  border-radius: 8px;
+  background-image: url(../../assets/bookmark.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card__bookmark:hover {
+  background-image: url(../../assets/bookmark-hover.svg);
+  cursor: url(../../assets/lapka.svg), pointer;
+}
