@@ -2,25 +2,42 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 104px 0;
-}
-
-.navigation__title {
-  padding: 30px 0 26px;
-  font-size: 20px;
-  line-height: 24px;
-  margin: 0;
-}
-
-.navigation__nav-bar {
   font-size: 18px;
   line-height: 24px;
+  font-family: "Roboto", "Times New Roman", serif;
+  font-weight: 500;
+}
+
+.navigation-saved {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  line-height: 24px;
+  font-family: "Roboto", "Times New Roman", serif;
+  font-weight: 500;
 }
 
 .navigation__nav-link {
   padding: 30px 0 26px;
   color: white;
   text-decoration: none;
+  margin-left: 76px;
+}
+
+.navigation__nav-link:hover {
+  cursor: url(../../assets/lapka.svg), pointer;
+}
+
+.navigation-saved__nav-link {
+  padding: 30px 0 26px;
+  color: black;
+  text-decoration: none;
+  margin-left: 76px;
+}
+
+.navigation-saved__nav-link:hover {
+  cursor: url(../../assets/lapka.svg), pointer;
 }
 
 .navigation__signin-btn {
@@ -31,4 +48,34 @@
   border-radius: 100px;
   border: solid 1px white;
   background-color: transparent;
+}
+
+.navigation__signin-btn:hover {
+  cursor: url(../../assets/lapka.svg), pointer;
+}
+
+.navigation__logout-btn {
+  margin-left: 64px;
+  height: 48px;
+  color: white;
+  border-radius: 100px;
+  border: solid 1px white;
+  background-color: transparent;
+}
+
+.navigation__logout-btn:hover {
+  cursor: url(../../assets/lapka.svg), pointer;
+}
+
+.navigation-saved__logout-btn {
+  margin-left: 64px;
+  height: 48px;
+  color: black;
+  border-radius: 100px;
+  border: solid 1px black;
+  background-color: transparent;
+}
+
+.navigation-saved__logout-btn:hover {
+  cursor: url(../../assets/lapka.svg), pointer;
 }

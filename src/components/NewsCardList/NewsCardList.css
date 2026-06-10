@@ -14,4 +14,12 @@
   border: none;
   background-color: #e8e8e8;
   border-radius: 100px;
+  font-family: "Roboto", "Times New Roman", serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.cards__more-btn:hover {
+  cursor: url(../../assets/lapka.svg), pointer;
 }

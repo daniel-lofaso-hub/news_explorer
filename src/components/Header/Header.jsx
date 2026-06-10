@@ -1,10 +1,15 @@
 import "./Header.css";
-import Navigation from "../Navigation/Navigation";
 
-function Header({ isLoggedIn }) {
+function Header({ variant = "default" }) {
+  const styles = {
+    default: "header",
+    main: "header-main",
+    saved: "header-saved",
+  };
+  const appliedClasses = styles[variant] || styles.default;
   return (
-    <header className="header">
-      <Navigation isLoggedIn={isLoggedIn} />
+    <header className={appliedClasses}>
+      <h1 className={`${appliedClasses}__title`}>NewsExplorer</h1>
     </header>
   );
 }

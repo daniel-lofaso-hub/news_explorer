@@ -2,3 +2,29 @@
   height: 80px;
   color: white;
 }
+
+.header-main {
+  height: 80px;
+  color: white;
+}
+
+.header-saved {
+  height: 80px;
+  color: black;
+}
+
+.header__title {
+  padding: 30px 0 26px;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+  font-family: "Roboto-Slab", "Times New Roman", serif;
+  font-weight: 700;
+}
+
+.header-saved__title {
+  padding: 30px 0 26px;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+}

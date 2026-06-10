@@ -1,0 +1,10 @@
+.saved-news__header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px black;
+  padding: 0 104px 0;
+}
+
+.saved-news__profile {
+  background-color: white;
+}

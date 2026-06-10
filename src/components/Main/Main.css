@@ -1,0 +1,13 @@
+.main__background {
+  background-image: url("../../src/assets/Background.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.main__header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px white;
+  padding: 0 104px 0;
+}
