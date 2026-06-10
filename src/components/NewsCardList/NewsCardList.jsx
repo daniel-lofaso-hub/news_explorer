@@ -21,14 +21,15 @@ function NewsCardList() {
   const hasMore = visibleItems.length < initialCards.length;
 
   return (
-    <div>
-      <ul className="cards">
+    <div className="card-list">
+      <h2 className="card-list__heading">Search results</h2>
+      <ul className="card-list__list">
         {visibleItems.map((item, index) => (
           <NewsCard key={index} item={item} />
         ))}
       </ul>
       {hasMore && (
-        <button className="cards__more-btn" onClick={loadMoreItems}>
+        <button className="card-list__more-btn" onClick={loadMoreItems}>
           Show more
         </button>
       )}

@@ -1,18 +1,29 @@
-.cards {
+.card-list {
   background-color: #f5f6f7;
+}
+
+.card-list__heading {
+  font-family: "Roboto-Slab", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  margin: 80px 0 64px 104px;
+}
+
+.card-list__list {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(3, 400px);
   justify-content: center;
 }
 
-.cards__more-btn {
+.card-list__more-btn {
   display: block;
   margin: 64px auto 80px;
   width: 288px;
   height: 64px;
   border: none;
-  background-color: #e8e8e8;
+  background-color: white;
   border-radius: 100px;
   font-family: "Roboto", "Times New Roman", serif;
   font-weight: 500;
@@ -20,6 +31,6 @@
   line-height: 24px;
 }
 
-.cards__more-btn:hover {
+.card-list__more-btn:hover {
   cursor: url(../../assets/lapka.svg), pointer;
 }

@@ -1,3 +1,7 @@
+.main {
+  background-color: #f5f6f7;
+}
+
 .main__background {
   background-image: url("../../src/assets/Background.png");
   background-position: center;

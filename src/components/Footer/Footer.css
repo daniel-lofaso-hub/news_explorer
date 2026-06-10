@@ -8,9 +8,11 @@
 
 .footer__copyright {
   color: #b6bcbf;
+  margin: 0;
+  font-family: "Roboto", "Times New Roman", serif;
+  font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-  margin: 0;
 }
 
 .footer__nav {
@@ -22,15 +24,29 @@
 .footer__nav-link {
   color: black;
   text-decoration: none;
+
+  font-family: "Roboto", "Times New Roman", serif;
+  font-weight: 400;
   font-size: 18px;
   line-height: 24px;
+}
+
+.footer__nav-link:hover {
+  cursor: url(../../assets/lapka.svg), pointer;
 }
 
 .footer__link {
   color: black;
   text-decoration: none;
+
+  font-family: "Roboto", "Times New Roman", serif;
+  font-weight: 400;
   font-size: 18px;
   line-height: 24px;
+}
+
+.footer__link:hover {
+  cursor: url(../../assets/lapka.svg), pointer;
 }
 
 .footer__links {

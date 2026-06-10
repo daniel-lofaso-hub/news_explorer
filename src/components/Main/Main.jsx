@@ -16,8 +16,10 @@ function Main({ isLoggedIn }) {
         </div>
         <SearchForm />
       </div>
+
       <Prelaoder />
       <NewsCardList />
+
       <About />
     </main>
   );

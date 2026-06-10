@@ -16,9 +16,16 @@ function SavedNews({ isLoggedIn }) {
         <Navigation variant="saved" isLoggedIn={isLoggedIn} />
       </div>
       <div className="saved-news__profile">
-        <h2>Saved articles</h2>
-        <h2>{currentUser.name}, you have "#" saved articles</h2>
-        <h3>By keywords: "X", "Y", and 2 other</h3>
+        <h2 className="saved-news__profile_title">Saved articles</h2>
+        <h2 className="saved-news__profile_text">
+          {currentUser.name}, you have "#" saved articles
+        </h2>
+        <h3 className="saved-news__profile_keywords">
+          By keywords:{" "}
+          <span className="saved-news__profile_keywords-bold">
+            "X", "Y", and 2 other
+          </span>
+        </h3>
       </div>
       <div className="saved-news__articles">
         {savedCards.map((item, index) => (

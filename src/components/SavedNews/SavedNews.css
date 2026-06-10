@@ -8,3 +8,34 @@
 .saved-news__profile {
   background-color: white;
 }
+
+.saved-news__profile_title {
+  font-family: "Roboto", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b22;
+  opacity: 0.5;
+}
+
+.saved-news__profile_text {
+  font-family: "Roboto-Slab", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+}
+
+.saved-news__profile_keywords {
+  font-family: "Roboto", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.saved-news__profile_keywords-bold {
+  font-weight: 700;
+}
+
+.saved .saved-news__articles {
+  background-color: #f5f6f7;
+}
