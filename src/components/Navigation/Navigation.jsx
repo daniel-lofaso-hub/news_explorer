@@ -13,10 +13,16 @@ function Navigation({ isLoggedIn, variant = "default" }) {
   if (isLoggedIn) {
     return (
       <div className={appliedClasses}>
-        <NavLink className={`${appliedClasses}__nav-link`} to="/">
+        <NavLink
+          className={`${appliedClasses}__nav-link ${appliedClasses}__nav-link_home`}
+          to="/"
+        >
           Home
         </NavLink>
-        <NavLink className={`${appliedClasses}__nav-link`} to="/saved-news">
+        <NavLink
+          className={`${appliedClasses}__nav-link ${appliedClasses}__nav-link_saved`}
+          to="/saved-news"
+        >
           Saved articles
         </NavLink>
         <button type="button" className={`${appliedClasses}__logout-btn`}>
@@ -27,7 +33,10 @@ function Navigation({ isLoggedIn, variant = "default" }) {
   } else {
     return (
       <div className={appliedClasses}>
-        <NavLink className="navigation__nav-link" to="/">
+        <NavLink
+          className="navigation__nav-link navigation__nav-link_home"
+          to="/"
+        >
           Home
         </NavLink>
         <button type="button" className="navigation__signin-btn">

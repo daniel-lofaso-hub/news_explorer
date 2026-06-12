@@ -8,7 +8,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [currentUser, setCurrentUser] = useState({ name: "John Doe" });
+  const [currentUser, setCurrentUser] = useState({ name: "Daniel" });
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

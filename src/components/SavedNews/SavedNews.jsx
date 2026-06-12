@@ -18,7 +18,8 @@ function SavedNews({ isLoggedIn }) {
       <div className="saved-news__profile">
         <h2 className="saved-news__profile_title">Saved articles</h2>
         <h2 className="saved-news__profile_text">
-          {currentUser.name}, you have "#" saved articles
+          {currentUser.name}, you have {savedCards.length} saved{" "}
+          {savedCards.length == 1 ? "article" : "articles"}
         </h2>
         <h3 className="saved-news__profile_keywords">
           By keywords:{" "}
