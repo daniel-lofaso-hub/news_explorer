@@ -13,6 +13,13 @@
 }
 
 @font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 900;
+  src: url(../vendor/fonts/roboto-900.woff) format("truetype");
+}
+
+@font-face {
   font-family: "Roboto-Slab";
   font-style: normal;
   font-weight: 400;

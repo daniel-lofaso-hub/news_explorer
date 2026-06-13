@@ -52,6 +52,15 @@
   font-weight: 500;
 }
 
+.search-form__submit:hover {
+  cursor: url(../../assets/lapka.svg), pointer;
+  background-color: #347eff;
+}
+
+.search-form__submit:active {
+  background-color: #2a65cc;
+}
+
 @media screen and (max-width: 1300px) {
   .search-form__content {
     width: 452px;

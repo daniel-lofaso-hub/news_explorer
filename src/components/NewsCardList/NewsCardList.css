@@ -34,6 +34,7 @@
 
 .card-list__more-btn:hover {
   cursor: url(../../assets/lapka.svg), pointer;
+  background-color: #e8e8e8;
 }
 
 @media screen and (max-width: 1300px) {
