@@ -1,15 +1,27 @@
 .header {
   height: 80px;
-  color: white;
 }
 
 .header-main {
   height: 80px;
-  color: white;
 }
 
 .header-saved {
   height: 80px;
+}
+
+.header__nav {
+  text-decoration: none;
+  color: white;
+}
+
+.header-main__nav {
+  text-decoration: none;
+  color: white;
+}
+
+.header-saved__nav {
+  text-decoration: none;
   color: #1a1b22;
 }
 

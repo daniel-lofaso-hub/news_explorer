@@ -1,4 +1,5 @@
 import "./Header.css";
+import { NavLink } from "react-router-dom";
 
 function Header({ variant = "default" }) {
   const styles = {
@@ -9,7 +10,9 @@ function Header({ variant = "default" }) {
   const appliedClasses = styles[variant] || styles.default;
   return (
     <header className={appliedClasses}>
-      <h1 className={`${appliedClasses}__title`}>NewsExplorer</h1>
+      <NavLink className={`${appliedClasses}__nav`} to="/">
+        <h1 className={`${appliedClasses}__title`}>NewsExplorer</h1>
+      </NavLink>
     </header>
   );
 }
