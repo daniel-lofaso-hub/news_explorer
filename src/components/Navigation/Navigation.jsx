@@ -25,7 +25,7 @@ function Navigation({
           Home
         </NavLink>
         <NavLink
-          className={`${appliedClasses}__nav-link ${appliedClasses}__nav-link_saved`}
+          className={`${appliedClasses}__nav-link ${appliedClasses}__nav-link_articles`}
           to="/saved-news"
         >
           Saved articles

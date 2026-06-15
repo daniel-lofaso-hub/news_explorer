@@ -10,7 +10,7 @@ import DropdownModal from "../DropdownModal/DropdownModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({ name: "Daniel" });
   const [activeModal, setActiveModal] = useState("");
 
