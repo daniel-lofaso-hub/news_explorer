@@ -1,6 +1,7 @@
 .circle-preloader {
   display: flex;
   position: relative;
+  visibility: hidden;
 }
 
 .circle-preloader__animation {

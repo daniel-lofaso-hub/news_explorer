@@ -81,6 +81,7 @@
 @media screen and (max-width: 775px) {
   .saved-news__header {
     padding: 0 16px 0;
+    height: 56px;
   }
 
   .saved-news__profile {

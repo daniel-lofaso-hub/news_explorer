@@ -6,13 +6,17 @@ import Prelaoder from "../Preloader/Preloader";
 import NewsCardList from "../NewsCardList/NewsCardList";
 import About from "../About/About";
 
-function Main({ isLoggedIn }) {
+function Main({ isLoggedIn, onLoginClick, onDropdownClick }) {
   return (
     <main className="main">
       <div className="main__background">
         <div className="main__header">
           <Header />
-          <Navigation isLoggedIn={isLoggedIn} />
+          <Navigation
+            isLoggedIn={isLoggedIn}
+            onLoginClick={onLoginClick}
+            onDropdownClick={onDropdownClick}
+          />
         </div>
         <SearchForm />
       </div>

@@ -3,7 +3,12 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Navigation({ isLoggedIn, variant = "default" }) {
+function Navigation({
+  isLoggedIn,
+  onLoginClick,
+  onDropdownClick,
+  variant = "default",
+}) {
   const styles = {
     default: "navigation",
     saved: "navigation-saved",
@@ -28,6 +33,11 @@ function Navigation({ isLoggedIn, variant = "default" }) {
         <button type="button" className={`${appliedClasses}__logout-btn`}>
           {currentUser.name}
         </button>
+        <button
+          onClick={onDropdownClick}
+          type="button"
+          className={`${appliedClasses}__menu-btn`}
+        ></button>
       </div>
     );
   } else {
@@ -39,9 +49,18 @@ function Navigation({ isLoggedIn, variant = "default" }) {
         >
           Home
         </NavLink>
-        <button type="button" className="navigation__signin-btn">
+        <button
+          onClick={onLoginClick}
+          type="button"
+          className="navigation__signin-btn"
+        >
           Sign in
         </button>
+        <button
+          onClick={onDropdownClick}
+          type="button"
+          className={`${appliedClasses}__menu-btn`}
+        ></button>
       </div>
     );
   }

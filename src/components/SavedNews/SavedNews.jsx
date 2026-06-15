@@ -6,14 +6,18 @@ import NewsCard from "../NewsCard/NewsCard";
 import { savedCards } from "../../constants";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function SavedNews({ isLoggedIn }) {
+function SavedNews({ isLoggedIn, onDropdownClick }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
     <div className="saved-news">
       <div className="saved-news__header">
         <Header variant="saved" />
-        <Navigation variant="saved" isLoggedIn={isLoggedIn} />
+        <Navigation
+          variant="saved"
+          isLoggedIn={isLoggedIn}
+          onDropdownClick={onDropdownClick}
+        />
       </div>
       <div className="saved-news__profile">
         <h2 className="saved-news__profile_title">Saved articles</h2>

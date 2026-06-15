@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LoginModal = ({ isOpen, onRegisterClick, onClose }) => {
+const RegisterModal = ({ isOpen, onLoginClick, onClose }) => {
   return (
     <ModalWithForm
-      title="Sign in"
-      buttonText="Sign in"
-      name="login"
+      title="Sign up"
+      buttonText="Sign up"
+      name="signup"
       isOpen={isOpen}
       onClose={onClose}
       secondaryButton={
         <button
-          onClick={onRegisterClick}
+          onClick={onLoginClick}
           type="button"
           className="modal__secondary-btn"
         >
-          or <span className="modal__secondary-btn_main-text">Sign up</span>
+          or <span className="modal__secondary-btn_main-text">Sign in</span>
         </button>
       }
     >
@@ -39,8 +39,18 @@ const LoginModal = ({ isOpen, onRegisterClick, onClose }) => {
           placeholder="Enter password"
         />
       </label>
+      <label htmlFor="login-username" className="modal__label">
+        Username
+        <input
+          type="username"
+          className={`modal__input`}
+          name="username"
+          id="login-username"
+          placeholder="Enter username"
+        />
+      </label>
     </ModalWithForm>
   );
 };
 
-export default LoginModal;
+export default RegisterModal;

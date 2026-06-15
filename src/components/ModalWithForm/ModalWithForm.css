@@ -1,17 +1,28 @@
 .modal {
-  visibility: visible;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0000005d;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.modal_opened {
+  visibility: visible;
 }
 
 .modal__content {
-  height: 380px;
   width: 430px;
   background-color: white;
+  position: relative;
   display: flex;
   flex-direction: column;
-  border: solid 1px black;
   border-radius: 16px;
+  filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.15));
 }
 
 .modal__title {
@@ -20,12 +31,13 @@
   font-weight: 900;
   font-size: 24px;
   line-height: 100%;
+  margin: 34px 0 22px 36px;
 }
 
 .modal__close {
   position: absolute;
-  right: 26px;
-  top: 26px;
+  right: -46px;
+  top: -46px;
   background: none;
   border: none;
   padding: 0;
@@ -40,15 +52,48 @@
   width: 40px;
 }
 
+.modal__close:hover {
+  cursor: url(../../assets/lapka.svg), pointer;
+}
+
 .modal__form {
   display: flex;
   flex-direction: column;
+  gap: 31px;
+  margin: 0 36px 0;
+}
+
+.modal__label {
+  font-family: "Inter", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: #2f71e5;
+  height: 47px;
+  width: 358px;
+}
+
+.modal__input {
+  display: block;
+  max-width: 358px;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid black;
+  padding: 0;
+  margin-top: 9px;
+  padding-bottom: 10px;
+}
+
+.modal__input:focus {
+  outline: none;
 }
 
 .modal__buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 8px 35px 28px;
+  gap: 16px;
 }
 
 .modal__submit {
@@ -62,6 +107,11 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
+  filter: drop-shadow(15 0 15px rgba(14, 26, 57, 0.2));
+}
+
+.modal__submit:hover {
+  cursor: url(../../assets/lapka.svg), pointer;
 }
 
 .modal__secondary-btn {
@@ -73,6 +123,70 @@
   line-height: 100%;
 }
 
+.modal__secondary-btn:hover {
+  cursor: url(../../assets/lapka.svg), pointer;
+}
+
 .modal__secondary-btn_main-text {
   color: #2f71e5;
+}
+
+@media screen and (max-width: 775px) {
+  .modal__content {
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    position: absolute;
+    top: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+    filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.15));
+  }
+
+  .modal__title {
+    width: 288px;
+    margin: 16px 0 18px 1px;
+  }
+
+  .modal__close {
+    right: 16px;
+    top: -40px;
+
+    height: 24px;
+    width: 24px;
+  }
+
+  .modal__form {
+    gap: 30px;
+    margin: 0 16px 0;
+  }
+
+  .modal__label {
+    width: 288px;
+    margin-left: 16px;
+  }
+
+  .modal__input {
+    display: block;
+    max-width: 288px;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid black;
+    padding: 0;
+    margin-top: 9px;
+  }
+
+  .modal__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: -7px 16px;
+    gap: 16px;
+  }
+
+  .modal__submit {
+    width: 288px;
+  }
 }
