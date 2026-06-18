@@ -1,6 +1,6 @@
 import "./SearchForm.css";
 
-function SearchForm() {
+function SearchForm({ onSearchSubmit }) {
   return (
     <div className="search-form">
       <div className="search-form__content">
@@ -9,17 +9,21 @@ function SearchForm() {
           Find the latest news on any topic and save them to your personal
           account.
         </p>
-        <div className="search-form__search-bar">
+        <form className="search-form__search-bar">
           <input
             className="search-form__input"
-            id="text"
+            id="input"
             type="text"
             placeholder="Enter topic"
           />
-          <button type="button" className="search-form__submit">
+          <button
+            onClick={onSearchSubmit}
+            type="submit"
+            className="search-form__submit"
+          >
             Search
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );

@@ -8,6 +8,8 @@ import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import DropdownModal from "../DropdownModal/DropdownModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { fetchNews } from "../../utils/newsApi";
+import { apiKey } from "../../utils/constants";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -30,6 +32,11 @@ function App() {
     setActiveModal("");
   };
 
+  const onSearchSubmit = (data) => {
+    fetchNews();
+    // Handle search submission
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -41,6 +48,7 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 onLoginClick={openLoginModal}
                 onDropdownClick={openDropdownModal}
+                onSearchSubmit={onSearchSubmit}
               />
             }
           />

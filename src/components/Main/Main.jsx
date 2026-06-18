@@ -6,7 +6,7 @@ import Prelaoder from "../Preloader/Preloader";
 import NewsCardList from "../NewsCardList/NewsCardList";
 import About from "../About/About";
 
-function Main({ isLoggedIn, onLoginClick, onDropdownClick }) {
+function Main({ isLoggedIn, onLoginClick, onDropdownClick, onSearchSubmit }) {
   return (
     <main className="main">
       <div className="main__background">
@@ -18,7 +18,7 @@ function Main({ isLoggedIn, onLoginClick, onDropdownClick }) {
             onDropdownClick={onDropdownClick}
           />
         </div>
-        <SearchForm />
+        <SearchForm onSearchSubmit={onSearchSubmit} />
       </div>
 
       <Prelaoder />

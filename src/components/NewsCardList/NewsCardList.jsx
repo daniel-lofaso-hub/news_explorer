@@ -1,6 +1,6 @@
 import "./NewsCardList.css";
 import NewsCard from "../NewsCard/NewsCard";
-import { initialCards } from "../../constants";
+import { initialCards } from "../../utils/constants";
 import { useState } from "react";
 
 function NewsCardList() {

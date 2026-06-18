@@ -3,7 +3,7 @@ import { useContext } from "react";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import NewsCard from "../NewsCard/NewsCard";
-import { savedCards } from "../../constants";
+import { savedCards } from "../../utils/constants";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function SavedNews({ isLoggedIn, onDropdownClick }) {
