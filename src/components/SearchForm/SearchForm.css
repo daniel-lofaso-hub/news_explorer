@@ -37,6 +37,11 @@
   padding-left: 24px;
 }
 
+.search-form__input:focus {
+  outline: none;
+  background-color: #ffffff;
+}
+
 .search-form__submit {
   width: 168px;
   height: 64px;

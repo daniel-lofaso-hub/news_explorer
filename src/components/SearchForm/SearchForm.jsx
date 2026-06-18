@@ -1,6 +1,22 @@
+import { useState } from "react";
 import "./SearchForm.css";
 
 function SearchForm({ onSearchSubmit }) {
+  const [keyword, setKeyword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!keyword.trim()) {
+      setError("Please enter a keyword");
+      return;
+    }
+
+    setError("");
+    onSearchSubmit(keyword.trim());
+  };
+
   return (
     <div className="search-form">
       <div className="search-form__content">
@@ -9,21 +25,27 @@ function SearchForm({ onSearchSubmit }) {
           Find the latest news on any topic and save them to your personal
           account.
         </p>
-        <form className="search-form__search-bar">
+        <form
+          className="search-form__search-bar"
+          onSubmit={handleSubmit}
+          noValidate
+        >
           <input
             className="search-form__input"
             id="input"
             type="text"
             placeholder="Enter topic"
+            value={keyword}
+            onChange={(e) => {
+              setKeyword(e.target.value);
+              if (error) setError("");
+            }}
           />
-          <button
-            onClick={onSearchSubmit}
-            type="submit"
-            className="search-form__submit"
-          >
+          <button type="submit" className="search-form__submit">
             Search
           </button>
         </form>
+        {error && <p className="search-form__error">{error}</p>}
       </div>
     </div>
   );

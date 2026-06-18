@@ -2,11 +2,20 @@ import "./Main.css";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
-import Prelaoder from "../Preloader/Preloader";
+import Preloader from "../Preloader/Preloader";
 import NewsCardList from "../NewsCardList/NewsCardList";
 import About from "../About/About";
 
-function Main({ isLoggedIn, onLoginClick, onDropdownClick, onSearchSubmit }) {
+function Main({
+  isLoggedIn,
+  onLoginClick,
+  onDropdownClick,
+  onSearchSubmit,
+  articles,
+  isLoading,
+  searchPerformed,
+  searchError,
+}) {
   return (
     <main className="main">
       <div className="main__background">
@@ -21,8 +30,12 @@ function Main({ isLoggedIn, onLoginClick, onDropdownClick, onSearchSubmit }) {
         <SearchForm onSearchSubmit={onSearchSubmit} />
       </div>
 
-      <Prelaoder />
-      <NewsCardList />
+      {searchPerformed && (
+        <div className="main__results">
+          {isLoading ? <Preloader /> : <NewsCardList articles={articles} />}
+          {searchError && <p className="main__error">{searchError}</p>}
+        </div>
+      )}
 
       <About />
     </main>

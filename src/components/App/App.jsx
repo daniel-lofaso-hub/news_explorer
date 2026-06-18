@@ -9,12 +9,15 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import DropdownModal from "../DropdownModal/DropdownModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { fetchNews } from "../../utils/newsApi";
-import { apiKey } from "../../utils/constants";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({ name: "Daniel" });
   const [activeModal, setActiveModal] = useState("");
+  const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchPerformed, setSearchPerformed] = useState(false);
+  const [searchError, setSearchError] = useState("");
 
   const openLoginModal = () => {
     setActiveModal("login");
@@ -32,9 +35,25 @@ function App() {
     setActiveModal("");
   };
 
-  const onSearchSubmit = (data) => {
-    fetchNews();
-    // Handle search submission
+  const onSearchSubmit = async (keyword) => {
+    setSearchError("");
+    setSearchPerformed(true);
+    setIsLoading(true);
+    setArticles([]);
+
+    const delay = new Promise((resolve) => setTimeout(resolve, 1000));
+
+    try {
+      const response = await fetchNews(keyword);
+      await delay;
+      setArticles(response.articles || []);
+    } catch (err) {
+      await delay;
+      setSearchError("Failed to fetch news");
+      setArticles([]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -49,6 +68,10 @@ function App() {
                 onLoginClick={openLoginModal}
                 onDropdownClick={openDropdownModal}
                 onSearchSubmit={onSearchSubmit}
+                articles={articles}
+                isLoading={isLoading}
+                searchPerformed={searchPerformed}
+                searchError={searchError}
               />
             }
           />
