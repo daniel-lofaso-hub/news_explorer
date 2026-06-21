@@ -3,10 +3,9 @@ import { useContext } from "react";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import NewsCard from "../NewsCard/NewsCard";
-import { savedCards } from "../../utils/constants";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function SavedNews({ isLoggedIn, onDropdownClick }) {
+function SavedNews({ isLoggedIn, onDropdownClick, savedArticles, onCardSave }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -22,8 +21,8 @@ function SavedNews({ isLoggedIn, onDropdownClick }) {
       <div className="saved-news__profile">
         <h2 className="saved-news__profile_title">Saved articles</h2>
         <h2 className="saved-news__profile_text">
-          {currentUser.name}, you have {savedCards.length} saved{" "}
-          {savedCards.length == 1 ? "article" : "articles"}
+          {currentUser.name}, you have {savedArticles.length} saved{" "}
+          {savedArticles.length == 1 ? "article" : "articles"}
         </h2>
         <h3 className="saved-news__profile_keywords">
           By keywords:{" "}
@@ -33,8 +32,8 @@ function SavedNews({ isLoggedIn, onDropdownClick }) {
         </h3>
       </div>
       <div className="saved-news__articles">
-        {savedCards.map((item, index) => (
-          <NewsCard key={index} item={item} />
+        {savedArticles.map((item, index) => (
+          <NewsCard key={index} item={item} onCardSave={onCardSave} />
         ))}
       </div>
     </div>

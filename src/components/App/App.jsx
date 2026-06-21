@@ -9,15 +9,19 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import DropdownModal from "../DropdownModal/DropdownModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { fetchNews } from "../../utils/newsApi";
+import { addCardSave, removeCardSave } from "../../utils/api";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({ name: "Daniel" });
   const [activeModal, setActiveModal] = useState("");
   const [articles, setArticles] = useState([]);
+  const [savedArticles, setSavedArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchPerformed, setSearchPerformed] = useState(false);
   const [searchError, setSearchError] = useState("");
+
+  const currentUserValue = { ...currentUser, savedArticles };
 
   const openLoginModal = () => {
     setActiveModal("login");
@@ -56,8 +60,31 @@ function App() {
     }
   };
 
+  const handleCardSave = (card) => {
+    setSavedArticles((prevSaved) => {
+      const matchById = card._id && ((item) => item._id === card._id);
+      const matchByUrl = card.url && ((item) => item.url === card.url);
+      const isSaved = prevSaved.some(
+        (item) =>
+          (matchById && matchById(item)) || (matchByUrl && matchByUrl(item)),
+      );
+
+      if (isSaved) {
+        return prevSaved.filter(
+          (item) =>
+            !(
+              (matchById && matchById(item)) ||
+              (matchByUrl && matchByUrl(item))
+            ),
+        );
+      }
+
+      return [...prevSaved, { ...card, isSaved: true }];
+    });
+  };
+
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={currentUserValue}>
       <div className="page">
         <Routes>
           <Route
@@ -68,6 +95,7 @@ function App() {
                 onLoginClick={openLoginModal}
                 onDropdownClick={openDropdownModal}
                 onSearchSubmit={onSearchSubmit}
+                onCardSave={handleCardSave}
                 articles={articles}
                 isLoading={isLoading}
                 searchPerformed={searchPerformed}
@@ -81,6 +109,8 @@ function App() {
               <SavedNews
                 isLoggedIn={isLoggedIn}
                 onDropdownClick={openDropdownModal}
+                onCardSave={handleCardSave}
+                savedArticles={savedArticles}
               />
             }
           />

@@ -15,6 +15,7 @@ function Main({
   isLoading,
   searchPerformed,
   searchError,
+  onCardSave,
 }) {
   return (
     <main className="main">
@@ -32,7 +33,11 @@ function Main({
 
       {searchPerformed && (
         <div className="main__results">
-          {isLoading ? <Preloader /> : <NewsCardList articles={articles} />}
+          {isLoading ? (
+            <Preloader />
+          ) : (
+            <NewsCardList articles={articles} onCardSave={onCardSave} />
+          )}
           {searchError && <p className="main__error">{searchError}</p>}
         </div>
       )}

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./NewsCardList.css";
 import NewsCard from "../NewsCard/NewsCard";
 
-function NewsCardList({ articles = [] }) {
+function NewsCardList({ articles = [], onCardSave }) {
   const itemsPerPage = 3;
   const [visibleItems, setVisibleItems] = useState([]);
 
@@ -27,7 +27,11 @@ function NewsCardList({ articles = [] }) {
         <>
           <ul className="card-list__list">
             {visibleItems.map((item, index) => (
-              <NewsCard key={`${item.title}-${index}`} item={item} />
+              <NewsCard
+                key={`${item.title}-${index}`}
+                item={item}
+                onCardSave={onCardSave}
+              />
             ))}
           </ul>
           {hasMore && (
