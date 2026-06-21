@@ -16,6 +16,7 @@ function Main({
   searchPerformed,
   searchError,
   onCardSave,
+  onLogout,
 }) {
   return (
     <main className="main">
@@ -26,6 +27,7 @@ function Main({
             isLoggedIn={isLoggedIn}
             onLoginClick={onLoginClick}
             onDropdownClick={onDropdownClick}
+            onLogout={onLogout}
           />
         </div>
         <SearchForm onSearchSubmit={onSearchSubmit} />
@@ -36,7 +38,11 @@ function Main({
           {isLoading ? (
             <Preloader />
           ) : (
-            <NewsCardList articles={articles} onCardSave={onCardSave} />
+            <NewsCardList
+              isLoggedIn={isLoggedIn}
+              articles={articles}
+              onCardSave={onCardSave}
+            />
           )}
           {searchError && <p className="main__error">{searchError}</p>}
         </div>

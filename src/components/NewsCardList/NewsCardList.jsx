@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import "./NewsCardList.css";
 import NewsCard from "../NewsCard/NewsCard";
+import notFoundImage from "../../assets/not-found.svg";
 
-function NewsCardList({ articles = [], onCardSave }) {
+function NewsCardList({ isLoggedIn, articles = [], onCardSave, onLogout }) {
   const itemsPerPage = 3;
   const [visibleItems, setVisibleItems] = useState([]);
 
@@ -20,17 +21,31 @@ function NewsCardList({ articles = [], onCardSave }) {
 
   return (
     <div className="card-list">
-      <h2 className="card-list__heading">Search results</h2>
       {articles.length === 0 ? (
-        <p className="card-list__empty">Nothing found</p>
+        <div className="card-list__empty">
+          <img
+            className="card-list__empty-image"
+            src={notFoundImage}
+            alt="No results"
+          />
+          <h3 className="card-list__empty-title">Nothing found</h3>
+          <p className="card-list__empty-text">
+            Sorry, but nothing matched
+            <br />
+            your search terms.
+          </p>
+        </div>
       ) : (
         <>
+          <h2 className="card-list__heading">Search results</h2>
           <ul className="card-list__list">
             {visibleItems.map((item, index) => (
               <NewsCard
                 key={`${item.title}-${index}`}
                 item={item}
                 onCardSave={onCardSave}
+                isLoggedIn={isLoggedIn}
+                onLogout={onLogout}
               />
             ))}
           </ul>

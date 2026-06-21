@@ -66,6 +66,16 @@
   background-color: #2a65cc;
 }
 
+.search-form__error {
+  position: absolute;
+  margin-left: 24px;
+  font-family: "Roboto", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #ff0000;
+}
+
 @media screen and (max-width: 1300px) {
   .search-form__content {
     width: 452px;
@@ -140,5 +150,9 @@
     margin: 0;
     position: relative;
     padding: 0;
+  }
+
+  .search-form__error {
+    top: -50px;
   }
 }

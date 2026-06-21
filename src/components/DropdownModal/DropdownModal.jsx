@@ -1,7 +1,13 @@
 import "./DropdownModal.css";
 import Navigation from "../Navigation/Navigation";
 
-function DropdownModal({ isOpen, isLoggedIn, onLoginClick, onClose }) {
+function DropdownModal({
+  isOpen,
+  isLoggedIn,
+  onLoginClick,
+  onClose,
+  onLogout,
+}) {
   return (
     <div
       className={`modal modal_type_dropdown ${isOpen ? "modal_opened" : ""}`}
@@ -12,7 +18,11 @@ function DropdownModal({ isOpen, isLoggedIn, onLoginClick, onClose }) {
           <button onClick={onClose} className="dropdown__close"></button>
         </div>
         <div className="dropdown__nav">
-          <Navigation isLoggedIn={isLoggedIn} onLoginClick={onLoginClick} />
+          <Navigation
+            isLoggedIn={isLoggedIn}
+            onLoginClick={onLoginClick}
+            onLogout={onLogout}
+          />
         </div>
       </div>
     </div>

@@ -44,8 +44,8 @@ function SearchForm({ onSearchSubmit }) {
           <button type="submit" className="search-form__submit">
             Search
           </button>
+          {error && <p className="search-form__error">{error}</p>}
         </form>
-        {error && <p className="search-form__error">{error}</p>}
       </div>
     </div>
   );

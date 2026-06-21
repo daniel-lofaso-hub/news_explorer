@@ -8,6 +8,7 @@ function Navigation({
   onLoginClick,
   onDropdownClick,
   variant = "default",
+  onLogout,
 }) {
   const styles = {
     default: "navigation",
@@ -30,7 +31,11 @@ function Navigation({
         >
           Saved articles
         </NavLink>
-        <button type="button" className={`${appliedClasses}__logout-btn`}>
+        <button
+          type="button"
+          className={`${appliedClasses}__logout-btn`}
+          onClick={onLogout}
+        >
           {currentUser.name}
         </button>
         <button

@@ -5,7 +5,13 @@ import Navigation from "../Navigation/Navigation";
 import NewsCard from "../NewsCard/NewsCard";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function SavedNews({ isLoggedIn, onDropdownClick, savedArticles, onCardSave }) {
+function SavedNews({
+  isLoggedIn,
+  onDropdownClick,
+  savedArticles,
+  onCardSave,
+  onLogout,
+}) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -16,6 +22,7 @@ function SavedNews({ isLoggedIn, onDropdownClick, savedArticles, onCardSave }) {
           variant="saved"
           isLoggedIn={isLoggedIn}
           onDropdownClick={onDropdownClick}
+          onLogout={onLogout}
         />
       </div>
       <div className="saved-news__profile">
@@ -33,7 +40,13 @@ function SavedNews({ isLoggedIn, onDropdownClick, savedArticles, onCardSave }) {
       </div>
       <div className="saved-news__articles">
         {savedArticles.map((item, index) => (
-          <NewsCard key={index} item={item} onCardSave={onCardSave} />
+          <NewsCard
+            variant="saved"
+            key={index}
+            item={item}
+            onCardSave={onCardSave}
+            isLoggedIn={isLoggedIn}
+          />
         ))}
       </div>
     </div>

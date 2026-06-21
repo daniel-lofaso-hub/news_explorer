@@ -8,6 +8,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import DropdownModal from "../DropdownModal/DropdownModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { fetchNews } from "../../utils/newsApi";
 import { addCardSave, removeCardSave } from "../../utils/api";
 
@@ -39,6 +40,13 @@ function App() {
     setActiveModal("");
   };
 
+  const handleLogout = () => {
+    // localStorage.removeItem("jwt");
+    setCurrentUser(null);
+    setIsLoggedIn(false);
+    setActiveModal("");
+  };
+
   const onSearchSubmit = async (keyword) => {
     setSearchError("");
     setSearchPerformed(true);
@@ -50,7 +58,11 @@ function App() {
     try {
       const response = await fetchNews(keyword);
       await delay;
-      setArticles(response.articles || []);
+      const articlesWithKeyword = (response.articles || []).map((article) => ({
+        ...article,
+        keyword,
+      }));
+      setArticles(articlesWithKeyword);
     } catch (err) {
       await delay;
       setSearchError("Failed to fetch news");
@@ -96,6 +108,7 @@ function App() {
                 onDropdownClick={openDropdownModal}
                 onSearchSubmit={onSearchSubmit}
                 onCardSave={handleCardSave}
+                onLogout={handleLogout}
                 articles={articles}
                 isLoading={isLoading}
                 searchPerformed={searchPerformed}
@@ -106,12 +119,15 @@ function App() {
           <Route
             path="/saved-news"
             element={
-              <SavedNews
-                isLoggedIn={isLoggedIn}
-                onDropdownClick={openDropdownModal}
-                onCardSave={handleCardSave}
-                savedArticles={savedArticles}
-              />
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <SavedNews
+                  isLoggedIn={isLoggedIn}
+                  onDropdownClick={openDropdownModal}
+                  onCardSave={handleCardSave}
+                  onLogout={handleLogout}
+                  savedArticles={savedArticles}
+                />
+              </ProtectedRoute>
             }
           />
         </Routes>
@@ -132,6 +148,7 @@ function App() {
         isOpen={activeModal === "dropdown"}
         onLoginClick={openLoginModal}
         onClose={closeActiveModal}
+        onLogout={handleLogout}
       />
     </CurrentUserContext.Provider>
   );

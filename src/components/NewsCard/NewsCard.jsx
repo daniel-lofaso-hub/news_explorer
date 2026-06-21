@@ -10,36 +10,63 @@ const formatDate = (date) => {
   });
 };
 
-function NewsCard({ item, onCardSave }) {
+function NewsCard({ item, onCardSave, isLoggedIn, variant = "default" }) {
   const currentUser = useContext(CurrentUserContext);
 
   const sourceName = item.source?.name || item.sourcename || "Unknown source";
 
   const handleBookmark = () => {
-    onCardSave(item);
+    if (isLoggedIn) {
+      onCardSave(item);
+    }
   };
 
   const isSaved = currentUser?.savedArticles?.some(
     (article) => article.url === item.url,
   );
 
-  const bookmarkBtnClassName = `card__bookmark ${isSaved ? "card__bookmark_active" : ""}`;
+  const styles = {
+    default: "card",
+    saved: "card-saved",
+  };
+  const appliedClasses = styles[variant] || styles.default;
+  const bookmarkBtnClassName = `${appliedClasses}__bookmark ${isSaved ? `${appliedClasses}__bookmark_saved` : ""}`;
 
   return (
-    <li className="card">
+    <li className={appliedClasses}>
+      <h2 className={`${appliedClasses}__keyword`}>{item.keyword}</h2>
       <button
+        disabled={!isLoggedIn}
         className={bookmarkBtnClassName}
         onClick={handleBookmark}
-      ></button>
-      <a className="card__link" href={item.url}>
-        <img className="card__image" alt={item.title} src={item.urlToImage} />
+      >
+        {!isLoggedIn ? (
+          <span className={`${appliedClasses}__bookmark_text`}>
+            Sign in to save articles
+          </span>
+        ) : isSaved ? (
+          <span className={`${appliedClasses}__bookmark_text`}>
+            Remove from saved
+          </span>
+        ) : null}
+      </button>
+      <a className={`${appliedClasses}__link`} href={item.url}>
+        <img
+          className={`${appliedClasses}__image`}
+          alt={item.title}
+          src={item.urlToImage}
+        />
 
-        <div className="card__content">
-          <h2 className="card__date">{formatDate(item.publishedAt)}</h2>
-          <div className="card__article">
-            <h2 className="card__title">{item.title}</h2>
-            <p className="card__description">{item.description}</p>
-            <h3 className="card__source">{sourceName}</h3>
+        <div className={`${appliedClasses}__content`}>
+          <h2 className={`${appliedClasses}__date`}>
+            {formatDate(item.publishedAt)}
+          </h2>
+          <div className={`${appliedClasses}__article`}>
+            <h2 className={`${appliedClasses}__title`}>{item.title}</h2>
+            <p className={`${appliedClasses}__description`}>
+              {item.description}
+            </p>
+            <h3 className={`${appliedClasses}__source`}>{sourceName}</h3>
           </div>
         </div>
       </a>
