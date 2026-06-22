@@ -2,7 +2,7 @@
   "name": "news_explorer",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://daniel-lofaso-hub.github.io/news_explorer",
+  "homepage": "https://daniel-lofaso-hub.github.io/news_explorer/",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
