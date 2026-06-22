@@ -50,7 +50,12 @@ function NewsCard({ item, onCardSave, isLoggedIn, variant = "default" }) {
           </span>
         ) : null}
       </button>
-      <a className={`${appliedClasses}__link`} href={item.url}>
+      <a
+        className={`${appliedClasses}__link`}
+        href={item.url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <img
           className={`${appliedClasses}__image`}
           alt={item.title}

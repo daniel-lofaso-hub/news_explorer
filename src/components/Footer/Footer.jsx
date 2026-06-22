@@ -12,7 +12,12 @@ function Footer() {
           <NavLink className="footer__nav-link" to="/">
             Home
           </NavLink>
-          <a className="footer__link" href="https://tripleten.com">
+          <a
+            className="footer__link"
+            href="https://tripleten.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             TripleTen
           </a>
         </div>
@@ -20,6 +25,8 @@ function Footer() {
           <a
             className="footer__link"
             href="https://github.com/daniel-lofaso-hub"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <img
               className="footer__social-icon"
@@ -30,6 +37,8 @@ function Footer() {
           <a
             className="footer__link"
             href="https://linkedin.com/in/daniel-lofaso/"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <img
               className="footer__social-icon"
