@@ -1,8 +1,27 @@
-# React + Vite
+# NewsExplorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Overview
 
-Currently, two official plugins are available:
+- Intro
+- Figma
+- Github
+- Project Pitch Video
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Intro**
+
+This project is an introduction into using React. It is a What To Wear app, that filters clothing items depending on the current weather (with functionality in F or C).
+
+The app utizlizes an API we built to send requests to our server. Anyone can register, login, edit their profile, and upload or delete clothing items to that server.
+
+**Figma**
+
+- [Link to the project on Figma](https://www.figma.com/design/3ottwMEhlBt95Dbn8dw1NH/Your-Final-Project?node-id=22618-834&t=CbSEtZAv0mqXb6jK-0)
+
+**Github**
+
+- [Link to the project on Github](https://github.com/daniel-lofaso-hub/news_explorer)
+- [Link to the deployment on GH pages](https://daniel-lofaso-hub.github.io/news_explorer/)
+
+**Project Pitch**
+
+- [React Project Pitch]()
