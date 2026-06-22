@@ -1,5 +1,7 @@
 import "./Footer.css";
 import { NavLink } from "react-router-dom";
+import linkedInImg from "../../assets/linked-in.svg";
+import gitHubImg from "../../assets/github.svg";
 
 function Footer() {
   return (
@@ -28,11 +30,7 @@ function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img
-              className="footer__social-icon"
-              alt="GitHub"
-              src="../../assets/github.svg"
-            />
+            <img className="footer__social-icon" alt="GitHub" src={gitHubImg} />
           </a>
           <a
             className="footer__link"
@@ -43,7 +41,7 @@ function Footer() {
             <img
               className="footer__social-icon"
               alt="LinkedIn"
-              src="../../assets/linked-in.svg"
+              src={linkedInImg}
             />
           </a>
         </div>
