@@ -31,7 +31,7 @@ function Footer() {
             <img
               className="footer__social-icon"
               alt="GitHub"
-              src="../../src/assets/github.svg"
+              src="../../assets/github.svg"
             />
           </a>
           <a
@@ -43,7 +43,7 @@ function Footer() {
             <img
               className="footer__social-icon"
               alt="LinkedIn"
-              src="../../src/assets/linked-in.svg"
+              src="../../assets/linked-in.svg"
             />
           </a>
         </div>
