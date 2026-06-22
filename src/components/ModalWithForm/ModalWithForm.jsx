@@ -10,6 +10,7 @@ function ModalWithForm({
   secondaryButton,
   disabled,
   onClose,
+  onSubmit,
 }) {
   const modalRef = useRef(null);
 
@@ -50,7 +51,7 @@ function ModalWithForm({
       <div className="modal__content" ref={modalRef}>
         <h2 className="modal__title">{title}</h2>
         <button onClick={onClose} className="modal__close"></button>
-        <form className="modal__form">
+        <form className="modal__form" onSubmit={onSubmit}>
           {children}
           <div className="modal__buttons">
             <button

@@ -31,24 +31,15 @@ export const handleServerResponse = async (res) => {
   return Promise.reject(serverMessage);
 };
 
-export const addCardSave = (itemId, token) => {
-  const requestHeaders = {
-    "Content-Type": "application/json",
-    authorization: `Bearer ${token}`,
-  };
-  return fetch(`${baseUrl}/saved-news/${itemId}/save`, {
-    method: "PUT",
-    headers: requestHeaders,
-  }).then(handleServerResponse);
+export const saveArticle = (article, token) => {
+  return Promise.resolve({
+    ...article,
+    _id: article._id || "fake-id",
+  });
 };
 
-export const removeCardSave = (itemId, token) => {
-  const requestHeaders = {
-    "Content-Type": "application/json",
-    authorization: `Bearer ${token}`,
-  };
-  return fetch(`${baseUrl}/saved-news/${itemId}/save`, {
-    method: "DELETE",
-    headers: requestHeaders,
-  }).then(handleServerResponse);
+export const removeSavedArticle = (itemId, token) => {
+  return Promise.resolve({
+    _id: itemId,
+  });
 };

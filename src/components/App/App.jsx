@@ -6,15 +6,17 @@ import SavedNews from "../SavedNews/SavedNews";
 import Footer from "../Footer/Footer";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import RegistrationCompleteModal from "../RegistrationCompleteModal/RegistrationCompleteModal";
 import DropdownModal from "../DropdownModal/DropdownModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { fetchNews } from "../../utils/newsApi";
-import { addCardSave, removeCardSave } from "../../utils/api";
+import { saveArticle, removeSavedArticle } from "../../utils/api";
+import { signUp, signIn, validateToken } from "../../utils/auth";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [currentUser, setCurrentUser] = useState({ name: "Daniel" });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState();
   const [activeModal, setActiveModal] = useState("");
   const [articles, setArticles] = useState([]);
   const [savedArticles, setSavedArticles] = useState([]);
@@ -28,8 +30,28 @@ function App() {
     setActiveModal("login");
   };
 
+  const saveCurrentUser = (userData) => {
+    const user = userData?.data || userData || null;
+    setCurrentUser(user);
+  };
+
+  const getErrorMessage = (err) => {
+    if (!err) return "An error occurred";
+    if (typeof err === "string") return err;
+    if (err.message) return err.message;
+    try {
+      return JSON.stringify(err);
+    } catch {
+      return String(err);
+    }
+  };
+
   const openRegisterModal = () => {
     setActiveModal("signup");
+  };
+
+  const openRegistrationCompleteModal = () => {
+    setActiveModal("registration-complete");
   };
 
   const openDropdownModal = () => {
@@ -41,10 +63,45 @@ function App() {
   };
 
   const handleLogout = () => {
-    // localStorage.removeItem("jwt");
+    localStorage.removeItem("jwt");
     setCurrentUser(null);
     setIsLoggedIn(false);
     setActiveModal("");
+  };
+
+  const onRegister = (inputValues) => {
+    console.log("Registering with:", inputValues);
+    return signUp(inputValues)
+      .then(() => {
+        openRegistrationCompleteModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const onLogin = (inputValues) => {
+    return signIn(inputValues)
+      .then((data) => {
+        const token = data?.token;
+        if (!token) {
+          return Promise.reject("No token returned from signin");
+        }
+        localStorage.setItem("jwt", token);
+        return validateToken(token);
+      })
+      .then((userData) => {
+        saveCurrentUser(userData);
+        setIsLoggedIn(true);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error(err);
+        return Promise.reject(getErrorMessage(err));
+      })
+      .finally(() => {
+        setIsLoggedIn(true);
+      });
   };
 
   const onSearchSubmit = async (keyword) => {
@@ -73,26 +130,31 @@ function App() {
   };
 
   const handleCardSave = (card) => {
-    setSavedArticles((prevSaved) => {
-      const matchById = card._id && ((item) => item._id === card._id);
-      const matchByUrl = card.url && ((item) => item.url === card.url);
-      const isSaved = prevSaved.some(
-        (item) =>
-          (matchById && matchById(item)) || (matchByUrl && matchByUrl(item)),
-      );
+    const token = localStorage.getItem("jwt");
+    const existingSavedArticle = savedArticles.find(
+      (item) => (card._id && item._id === card._id) || item.url === card.url,
+    );
 
-      if (isSaved) {
-        return prevSaved.filter(
-          (item) =>
-            !(
-              (matchById && matchById(item)) ||
-              (matchByUrl && matchByUrl(item))
-            ),
+    if (!existingSavedArticle) {
+      saveArticle(card, token)
+        .then((savedArticle) => {
+          setSavedArticles((prevSaved) => [...prevSaved, savedArticle]);
+        })
+        .catch((err) => {
+          console.error("Error saving article:", err);
+        });
+      return;
+    }
+
+    removeSavedArticle(existingSavedArticle._id, token)
+      .then(() => {
+        setSavedArticles((prevSaved) =>
+          prevSaved.filter((item) => item._id !== existingSavedArticle._id),
         );
-      }
-
-      return [...prevSaved, { ...card, isSaved: true }];
-    });
+      })
+      .catch((err) => {
+        console.error("Error removing saved article:", err);
+      });
   };
 
   return (
@@ -137,18 +199,26 @@ function App() {
         isOpen={activeModal === "login"}
         onRegisterClick={openRegisterModal}
         onClose={closeActiveModal}
+        onLogin={onLogin}
       />
       <RegisterModal
         isOpen={activeModal === "signup"}
         onLoginClick={openLoginModal}
         onClose={closeActiveModal}
+        onRegister={onRegister}
       />
       <DropdownModal
         isLoggedIn={isLoggedIn}
         isOpen={activeModal === "dropdown"}
         onLoginClick={openLoginModal}
         onClose={closeActiveModal}
+        onLogin={onLogin}
         onLogout={handleLogout}
+      />
+      <RegistrationCompleteModal
+        isOpen={activeModal === "registration-complete"}
+        onClose={closeActiveModal}
+        onLoginClick={openLoginModal}
       />
     </CurrentUserContext.Provider>
   );
