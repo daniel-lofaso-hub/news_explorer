@@ -14,6 +14,28 @@ function SavedNews({
 }) {
   const currentUser = useContext(CurrentUserContext);
 
+  const keywords = [
+    ...new Set(
+      savedArticles
+        .map((item) => item.keyword)
+        .filter((keyword) => keyword && keyword.trim()),
+    ),
+  ];
+  const displayedKeywords = keywords.slice(0, 2);
+  const remainingKeywordsCount = keywords.length - displayedKeywords.length;
+  const formattedKeywords = displayedKeywords
+    .map((keyword) => `${keyword}`)
+    .join(", ");
+  const keywordsText = keywords.length
+    ? `${formattedKeywords}${
+        remainingKeywordsCount > 0
+          ? ` and ${remainingKeywordsCount} other${
+              remainingKeywordsCount > 1 ? "s" : ""
+            }`
+          : ""
+      }`
+    : "None";
+
   return (
     <div className="saved-news">
       <div className="saved-news__header">
@@ -34,7 +56,7 @@ function SavedNews({
         <h3 className="saved-news__profile_keywords">
           By keywords:{" "}
           <span className="saved-news__profile_keywords-bold">
-            "X", "Y", and 2 other
+            {keywordsText}
           </span>
         </h3>
       </div>

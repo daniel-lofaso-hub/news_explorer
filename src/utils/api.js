@@ -32,9 +32,14 @@ export const handleServerResponse = async (res) => {
 };
 
 export const saveArticle = (article, token) => {
+  const id =
+    article._id ||
+    article.url ||
+    `fake-id-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
   return Promise.resolve({
     ...article,
-    _id: article._id || "fake-id",
+    _id: id,
   });
 };
 

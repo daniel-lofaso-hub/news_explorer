@@ -15,7 +15,7 @@ import { saveArticle, removeSavedArticle } from "../../utils/api";
 import { signUp, signIn, validateToken } from "../../utils/auth";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState();
   const [activeModal, setActiveModal] = useState("");
   const [articles, setArticles] = useState([]);

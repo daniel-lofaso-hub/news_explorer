@@ -8,8 +8,8 @@ function About() {
       <div>
         <h2 className="about__title">About the author</h2>
         <p className="about__text">
-          My name is Daniel. I am a full-stack developer. I am experienced in
-          JavaScript, React, Express, HTML, and CSS.
+          My name is Daniel. I am a full-stack developer. I have experience
+          working with JavaScript, React, Express, HTML, and CSS.
           <br />
           <br />
           This NewsExplorer app was my Final Project for my TripleTen Software
