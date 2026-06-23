@@ -24,4 +24,4 @@ The app utizlizes an API we built to send requests to our server. Anyone can reg
 
 **Project Pitch**
 
-- [React Project Pitch]()
+- [React Project Pitch](https://www.loom.com/share/78348db6b2aa4de4bf79a0bf4b328128)
