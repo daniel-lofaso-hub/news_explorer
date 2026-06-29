@@ -58,10 +58,9 @@
 }
 
 .card__bookmark:disabled {
-  color: transparent;
   opacity: 1 !important;
 
-  background-color: inherit;
+  background-color: white;
   color: inherit;
   border-color: inherit;
 }

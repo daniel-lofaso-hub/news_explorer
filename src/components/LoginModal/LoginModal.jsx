@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -33,12 +33,10 @@ const LoginModal = ({ isOpen, onRegisterClick, onLogin, onClose }) => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  useEffect(() => {
-    if (isOpen) {
-      resetForm();
-      setIsSubmitted(false);
-    }
-  }, [isOpen]);
+  const handleOpen = () => {
+    resetForm();
+    setIsSubmitted(false);
+  };
 
   async function handleSubmit(evt) {
     evt.preventDefault();
@@ -65,6 +63,7 @@ const LoginModal = ({ isOpen, onRegisterClick, onLogin, onClose }) => {
       isOpen={isOpen}
       onSubmit={handleSubmit}
       onClose={onClose}
+      onOpen={handleOpen}
       disabled={!isValid || isSubmitted}
       secondaryButton={
         <button
@@ -79,8 +78,9 @@ const LoginModal = ({ isOpen, onRegisterClick, onLogin, onClose }) => {
       <label htmlFor="login-email" className="modal__label">
         Email
         <input
+          required
           type="email"
-          className={`modal__input`}
+          className={`modal__input${errors.email ? " modal__input_error" : ""}`}
           name="email"
           id="login-email"
           placeholder="Enter email"
@@ -88,10 +88,12 @@ const LoginModal = ({ isOpen, onRegisterClick, onLogin, onClose }) => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
+        {errors.email && <span className="modal__error">{errors.email}</span>}
       </label>
       <label htmlFor="login-password" className="modal__label">
         Password
         <input
+          required
           type="password"
           className={`modal__input`}
           name="password"

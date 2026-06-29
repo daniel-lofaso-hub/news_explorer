@@ -3,6 +3,13 @@
   display: flex;
   gap: 56px;
   padding: 80px 104px;
+  justify-content: center;
+}
+
+.about__content {
+  display: flex;
+  flex-direction: row;
+  gap: 56px;
 }
 
 .about__image {
@@ -51,11 +58,17 @@
 
 @media screen and (max-width: 775px) {
   .about {
-    gap: 32px;
     padding: 32px 24px 128px;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .about__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
   }
 
   .about__image {

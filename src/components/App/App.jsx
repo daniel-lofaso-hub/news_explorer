@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
@@ -77,6 +77,7 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
+        return Promise.reject(getErrorMessage(err));
       });
   };
 

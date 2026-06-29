@@ -18,7 +18,7 @@ function Navigation({
   const currentUser = useContext(CurrentUserContext);
   if (isLoggedIn) {
     return (
-      <div className={appliedClasses}>
+      <nav className={appliedClasses}>
         <NavLink
           className={`${appliedClasses}__nav-link ${appliedClasses}__nav-link_home`}
           to="/"
@@ -43,11 +43,11 @@ function Navigation({
           type="button"
           className={`${appliedClasses}__menu-btn`}
         ></button>
-      </div>
+      </nav>
     );
   } else {
     return (
-      <div className={appliedClasses}>
+      <nav className={appliedClasses}>
         <NavLink
           className="navigation__nav-link navigation__nav-link_home"
           to="/"
@@ -66,7 +66,7 @@ function Navigation({
           type="button"
           className={`${appliedClasses}__menu-btn`}
         ></button>
-      </div>
+      </nav>
     );
   }
 }

@@ -37,7 +37,7 @@ function SavedNews({
     : "None";
 
   return (
-    <div className="saved-news">
+    <section className="saved-news">
       <div className="saved-news__header">
         <Header variant="saved" />
         <Navigation
@@ -71,7 +71,7 @@ function SavedNews({
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 

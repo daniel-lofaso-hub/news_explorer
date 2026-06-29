@@ -20,7 +20,7 @@ function NewsCardList({ isLoggedIn, articles = [], onCardSave, onLogout }) {
   const hasMore = visibleItems.length < articles.length;
 
   return (
-    <div className="card-list">
+    <section className="card-list">
       {articles.length === 0 ? (
         <div className="card-list__empty">
           <img
@@ -56,7 +56,7 @@ function NewsCardList({ isLoggedIn, articles = [], onCardSave, onLogout }) {
           )}
         </>
       )}
-    </div>
+    </section>
   );
 }
 

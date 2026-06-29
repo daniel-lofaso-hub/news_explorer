@@ -1,5 +1,3 @@
-const headers = { "Content-Type": "application/json" };
-
 export const handleServerResponse = async (res) => {
   if (res.ok) return res.json();
 
@@ -31,7 +29,7 @@ export const handleServerResponse = async (res) => {
   return Promise.reject(serverMessage);
 };
 
-export const saveArticle = (article, token) => {
+export const saveArticle = (article) => {
   const id =
     article._id ||
     article.url ||
@@ -43,7 +41,7 @@ export const saveArticle = (article, token) => {
   });
 };
 
-export const removeSavedArticle = (itemId, token) => {
+export const removeSavedArticle = (itemId) => {
   return Promise.resolve({
     _id: itemId,
   });

@@ -3,62 +3,15 @@ import { useState, useCallback, useMemo } from "react";
 export function useFormWithValidation(defaultValues, validationRules = {}) {
   const [values, setValues] = useState(defaultValues);
 
-  // Initialize errors based on default values
-  const initialErrors = useMemo(() => {
-    const newErrors = {};
-
-    Object.keys(defaultValues).forEach((fieldName) => {
-      const rule = validationRules[fieldName];
-      if (!rule) return;
-
-      if (typeof rule === "function") {
-        const result = rule(defaultValues[fieldName]);
-        if (result) {
-          newErrors[fieldName] = result;
-        }
-      } else if (
-        rule.required &&
-        (!defaultValues[fieldName] || defaultValues[fieldName].trim() === "")
-      ) {
-        newErrors[fieldName] = rule.requiredMessage || "This field is required";
-      } else if (
-        rule.pattern &&
-        defaultValues[fieldName] &&
-        !rule.pattern.test(defaultValues[fieldName])
-      ) {
-        newErrors[fieldName] = rule.patternMessage || "Invalid format";
-      } else if (rule.validate && defaultValues[fieldName]) {
-        const error = rule.validate(defaultValues[fieldName]);
-        if (error) {
-          newErrors[fieldName] = error;
-        }
-      }
-    });
-
-    return newErrors;
-  }, [defaultValues, validationRules]);
-
-  const [errors, setErrors] = useState(initialErrors);
-
-  // Initialize isValid based on errors
-  const initialIsValid = useMemo(() => {
-    return Object.values(initialErrors).every((err) => !err);
-  }, [initialErrors]);
-
-  const [isValid, setIsValid] = useState(initialIsValid);
-
-  // Validate a single field
-  const validateField = useCallback(
+  const getFieldError = useCallback(
     (name, value) => {
       const rule = validationRules[name];
       if (!rule) return "";
 
-      // Handle custom validation function
       if (typeof rule === "function") {
         return rule(value) || "";
       }
 
-      // Handle validation object with rules
       if (rule.required && (!value || value.trim() === "")) {
         return rule.requiredMessage || "This field is required";
       }
@@ -75,6 +28,23 @@ export function useFormWithValidation(defaultValues, validationRules = {}) {
       return "";
     },
     [validationRules],
+  );
+
+  const [errors, setErrors] = useState({});
+
+  const initialIsValid = useMemo(() => {
+    return Object.keys(defaultValues).every((fieldName) => {
+      return !getFieldError(fieldName, defaultValues[fieldName]);
+    });
+  }, [defaultValues, getFieldError]);
+
+  const [isValid, setIsValid] = useState(initialIsValid);
+
+  const validateField = useCallback(
+    (name, value) => {
+      return getFieldError(name, value);
+    },
+    [getFieldError],
   );
 
   // Validate all fields
@@ -98,12 +68,22 @@ export function useFormWithValidation(defaultValues, validationRules = {}) {
   // Handle change event
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setValues((prev) => ({ ...prev, [name]: value }));
+    const nextValues = { ...values, [name]: value };
+    setValues(nextValues);
 
-    const fieldError = validateField(name, value);
-    const newErrors = { ...errors, [name]: fieldError };
-    setErrors(newErrors);
-    setIsValid(!fieldError && Object.values(newErrors).every((err) => !err));
+    setErrors((prevErrors) => {
+      if (prevErrors[name]) {
+        const remainingErrors = { ...prevErrors };
+        delete remainingErrors[name];
+        return remainingErrors;
+      }
+      return prevErrors;
+    });
+
+    const formIsValid = Object.keys(defaultValues).every((fieldName) => {
+      return !validateField(fieldName, nextValues[fieldName]);
+    });
+    setIsValid(formIsValid);
   };
 
   // Handle blur event for validation
@@ -119,20 +99,12 @@ export function useFormWithValidation(defaultValues, validationRules = {}) {
   // Reset form values and errors
   const resetForm = useCallback(() => {
     setValues(defaultValues);
+    setErrors({});
 
-    // Reinitialize errors for default values
-    const newErrors = {};
-    let formIsValid = true;
-
-    Object.keys(defaultValues).forEach((fieldName) => {
-      const error = validateField(fieldName, defaultValues[fieldName]);
-      if (error) {
-        newErrors[fieldName] = error;
-        formIsValid = false;
-      }
+    const formIsValid = Object.keys(defaultValues).every((fieldName) => {
+      return !validateField(fieldName, defaultValues[fieldName]);
     });
 
-    setErrors(newErrors);
     setIsValid(formIsValid);
   }, [defaultValues, validateField]);
 

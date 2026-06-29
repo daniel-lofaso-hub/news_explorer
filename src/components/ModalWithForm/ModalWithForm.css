@@ -69,7 +69,7 @@
   font-size: 12px;
   line-height: 100%;
   color: #2f71e5;
-  height: 47px;
+  min-height: 47px;
   width: 358px;
 }
 
@@ -88,12 +88,28 @@
   outline: none;
 }
 
+.modal__error {
+  display: block;
+  margin-top: 4px;
+  color: #ff0000;
+  font-size: 12px;
+  line-height: 14px;
+}
+
 .modal__buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 8px 35px 28px;
   gap: 16px;
+}
+
+.modal__submit-error {
+  color: #ff0000;
+  font-family: "Inter", "Times New Roman", serif;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
 }
 
 .modal__submit {

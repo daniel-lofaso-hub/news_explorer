@@ -1,5 +1,5 @@
 import "./ModalWithForm.css";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 function ModalWithForm({
   children,
@@ -11,8 +11,19 @@ function ModalWithForm({
   disabled,
   onClose,
   onSubmit,
+  onOpen,
+  submitError,
 }) {
   const modalRef = useRef(null);
+  const wasOpenRef = useRef(false);
+
+  useLayoutEffect(() => {
+    if (isOpen && !wasOpenRef.current) {
+      onOpen?.();
+    }
+
+    wasOpenRef.current = isOpen;
+  }, [isOpen, onOpen]);
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
@@ -44,7 +55,7 @@ function ModalWithForm({
     return () => {
       document.removeEventListener("keydown", handleEscClose);
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   return (
     <div className={`modal modal_type_${name} ${isOpen ? "modal_opened" : ""}`}>
@@ -54,6 +65,9 @@ function ModalWithForm({
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
           <div className="modal__buttons">
+            {submitError && (
+              <span className="modal__submit-error">{submitError}</span>
+            )}
             <button
               type="submit"
               className={`modal__submit modal__submit_type_${name} ${disabled ? "modal__submit_disabled" : ""}`}

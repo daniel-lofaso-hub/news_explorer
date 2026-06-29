@@ -6,10 +6,8 @@ import gitHubImg from "../../assets/github.svg";
 function Footer() {
   return (
     <footer className="footer">
-      <h2 className="footer__copyright">
-        &copy; Supersite, Powered by News API
-      </h2>
-      <div className="footer__nav">
+      <p className="footer__copyright">&copy; Supersite, Powered by News API</p>
+      <nav className="footer__nav">
         <div className="footer__links">
           <NavLink className="footer__nav-link" to="/">
             Home
@@ -45,7 +43,7 @@ function Footer() {
             />
           </a>
         </div>
-      </div>
+      </nav>
     </footer>
   );
 }

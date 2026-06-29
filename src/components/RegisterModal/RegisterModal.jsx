@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -14,7 +14,7 @@ const RegisterModal = ({ isOpen, onLoginClick, onRegister, onClose }) => {
       required: true,
       requiredMessage: "Email is required",
       pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      patternMessage: "(this is not a email address)",
+      patternMessage: "Invalid email address",
     },
     password: {
       required: true,
@@ -37,17 +37,17 @@ const RegisterModal = ({ isOpen, onLoginClick, onRegister, onClose }) => {
   } = useFormWithValidation(defaultValues, validationRules);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  useEffect(() => {
-    if (isOpen) {
-      resetForm();
-      validateForm();
-      setIsSubmitted(false);
-    }
-  }, [isOpen]);
+  const handleOpen = () => {
+    resetForm();
+    setSubmitError("");
+    setIsSubmitted(false);
+  };
 
   async function handleSubmit(evt) {
     evt.preventDefault();
+    setSubmitError("");
     setIsSubmitted(true);
     if (validateForm()) {
       try {
@@ -56,9 +56,11 @@ const RegisterModal = ({ isOpen, onLoginClick, onRegister, onClose }) => {
         return;
       } catch (error) {
         setIsSubmitted(false);
-        return typeof error === "string"
-          ? error
-          : error?.message || "Something went wrong";
+        const message =
+          typeof error === "string"
+            ? error
+            : error?.message || "Something went wrong";
+        setSubmitError(message);
       }
     }
   }
@@ -70,7 +72,9 @@ const RegisterModal = ({ isOpen, onLoginClick, onRegister, onClose }) => {
       isOpen={isOpen}
       onSubmit={handleSubmit}
       onClose={onClose}
+      onOpen={handleOpen}
       disabled={!isValid || isSubmitted}
+      submitError={submitError}
       secondaryButton={
         <button
           onClick={onLoginClick}
@@ -84,19 +88,28 @@ const RegisterModal = ({ isOpen, onLoginClick, onRegister, onClose }) => {
       <label htmlFor="login-email" className="modal__label">
         Email
         <input
+          required
           type="email"
-          className={`modal__input`}
+          className={`modal__input${errors.email ? " modal__input_error" : ""}`}
           name="email"
           id="login-email"
           placeholder="Enter email"
           value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          onChange={(event) => {
+            setSubmitError("");
+            handleChange(event);
+          }}
+          onBlur={(event) => {
+            setSubmitError("");
+            handleBlur(event);
+          }}
         />
+        {errors.email && <span className="modal__error">{errors.email}</span>}
       </label>
       <label htmlFor="login-password" className="modal__label">
         Password
         <input
+          required
           type="password"
           className={`modal__input`}
           name="password"
@@ -110,6 +123,7 @@ const RegisterModal = ({ isOpen, onLoginClick, onRegister, onClose }) => {
       <label htmlFor="login-username" className="modal__label">
         Username
         <input
+          required
           type="username"
           className={`modal__input`}
           name="username"
