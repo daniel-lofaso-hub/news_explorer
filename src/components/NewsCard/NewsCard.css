@@ -1,0 +1,452 @@
+.card {
+  height: 576px;
+  width: 400px;
+  border-radius: 16px;
+  background-color: white;
+  list-style: none;
+  position: relative;
+}
+
+.card__image {
+  height: 272px;
+  width: 400px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.card__keyword {
+  display: none;
+}
+
+.card__link {
+  text-decoration: none;
+  color: #1a1b22;
+}
+
+.card__link:active {
+  text-decoration: none;
+}
+
+.card__link:hover {
+  cursor: url(../../assets/lapka.svg), pointer;
+}
+
+.card__bookmark {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  border: none;
+  top: 24px;
+  right: 24px;
+  border-radius: 8px;
+  background-image: url(../../assets/bookmark.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card__bookmark:hover {
+  background-image: url(../../assets/bookmark-hover.svg);
+  cursor: url(../../assets/lapka.svg), pointer;
+}
+
+.card__bookmark_saved {
+  background-image: url(../../assets/bookmark-active.svg);
+}
+
+.card__bookmark_saved:hover {
+  background-image: url(../../assets/bookmark-active.svg);
+}
+
+.card__bookmark:disabled {
+  opacity: 1 !important;
+
+  background-color: white;
+  color: inherit;
+  border-color: inherit;
+}
+
+.card__bookmark:disabled:hover {
+  color: black;
+}
+
+.card__bookmark_text {
+  display: none;
+}
+
+.card__bookmark:hover .card__bookmark_text {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0px;
+  right: 45px;
+  background-color: white;
+  border-radius: 10px;
+  height: 40px;
+  width: 182px;
+  font-family: "Roboto", "Times New Roman", serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 100%;
+  margin: 0;
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+
+  margin: 20px 24px 24px;
+  max-height: 304px;
+}
+
+.card__date {
+  font-family: "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 0 12px 0;
+  color: #b6bcbf;
+}
+
+.card__title {
+  font-family: "Roboto-Slab", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  height: 60px;
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card__description {
+  font-family: "Roboto", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  height: 110px;
+  margin: 0 0 18px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card__source {
+  font-family: "Roboto-Slab", "Times New Roman", serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+  color: #b6bcbf;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Saved-news styles */
+.card-saved {
+  height: 576px;
+  width: 400px;
+  border-radius: 16px;
+  background-color: white;
+  list-style: none;
+  position: relative;
+}
+
+.card-saved__keyword {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background-color: white;
+  color: black;
+  padding: 8px 22px;
+  border-radius: 10px;
+  font-family: "Roboto", "Times New Roman", serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  margin: 0;
+}
+
+.card-saved__image {
+  height: 272px;
+  width: 400px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.card-saved__link {
+  text-decoration: none;
+  color: #1a1b22;
+}
+
+.card-saved__link:active {
+  text-decoration: none;
+}
+
+.card-saved__link:hover {
+  cursor: url(../../assets/lapka.svg), pointer;
+}
+
+.card-saved__bookmark {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  border: none;
+  top: 24px;
+  right: 24px;
+  border-radius: 8px;
+  background-image: url(../../assets/delete.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-saved__bookmark:hover {
+  background-image: url(../../assets/delete-hover.svg);
+  cursor: url(../../assets/lapka.svg), pointer;
+}
+
+.card-saved__bookmark_saved {
+  background-image: url(../../assets/delete.svg);
+}
+
+.card-saved__bookmark_saved:hover {
+  background-image: url(../../assets/delete-hover.svg);
+}
+
+.card-saved__bookmark:disabled {
+  color: transparent;
+  opacity: 1 !important;
+
+  background-color: inherit;
+  color: inherit;
+  border-color: inherit;
+}
+
+.card-saved__bookmark:disabled:hover {
+  color: black;
+}
+
+.card-saved__bookmark_text {
+  display: none;
+}
+
+.card-saved__bookmark:hover .card-saved__bookmark_text {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0px;
+  right: 45px;
+  background-color: white;
+  border-radius: 10px;
+  height: 40px;
+  width: 182px;
+  font-family: "Roboto", "Times New Roman", serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 100%;
+  margin: 0;
+}
+
+.card-saved__content {
+  display: flex;
+  flex-direction: column;
+
+  margin: 20px 24px 24px;
+  max-height: 304px;
+}
+
+.card-saved__date {
+  font-family: "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 0 12px 0;
+  color: #b6bcbf;
+}
+
+.card-saved__title {
+  font-family: "Roboto-Slab", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  height: 60px;
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-saved__description {
+  font-family: "Roboto", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  height: 110px;
+  margin: 0 0 18px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-saved__source {
+  font-family: "Roboto-Slab", "Times New Roman", serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+  color: #b6bcbf;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 1300px) {
+  .card {
+    height: 420px;
+    width: 224px;
+  }
+
+  .card__image {
+    height: 150px;
+    width: 224px;
+  }
+
+  .card__bookmark {
+    top: 8px;
+    right: 8px;
+  }
+
+  .card__content {
+    display: flex;
+    flex-direction: column;
+
+    margin: 16px 16px 16px;
+    max-height: 270px;
+  }
+
+  .card__title {
+    font-size: 22px;
+    line-height: 24px;
+    height: 72px;
+    margin: 0 0 10px 0;
+  }
+
+  .card__description {
+    height: 88px;
+    margin: 0 0 12px 0;
+  }
+
+  .card__bookmark:hover .card__bookmark_text {
+    width: 163px;
+  }
+
+  /* Saved-news styles */
+
+  .card-saved {
+    height: 420px;
+    width: 224px;
+  }
+
+  .card-saved__keyword {
+    top: 8px;
+    left: 8px;
+  }
+
+  .card-saved__image {
+    height: 150px;
+    width: 224px;
+  }
+
+  .card-saved__bookmark {
+    top: 8px;
+    right: 8px;
+  }
+
+  .card-saved__content {
+    display: flex;
+    flex-direction: column;
+
+    margin: 16px 16px 16px;
+    max-height: 270px;
+  }
+
+  .card-saved__title {
+    font-size: 22px;
+    line-height: 24px;
+    height: 72px;
+    margin: 0 0 10px 0;
+  }
+
+  .card-saved__description {
+    height: 88px;
+    margin: 0 0 12px 0;
+  }
+
+  .card-saved__bookmark:hover .card-saved__bookmark_text {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 775px) {
+  .card {
+    height: 440px;
+    width: 288px;
+  }
+
+  .card__image {
+    height: 196px;
+    width: 288px;
+  }
+
+  .card__bookmark {
+    top: 16px;
+    right: 16px;
+  }
+
+  .card__content {
+    display: flex;
+    flex-direction: column;
+
+    margin: 16px 16px 16px;
+    max-height: 244px;
+  }
+
+  .card__title {
+    max-height: 48px;
+    margin: 0 0 14px 0;
+  }
+
+  /* Saved-news styles */
+
+  .card-saved {
+    height: 440px;
+    width: 288px;
+  }
+
+  .card-saved__keyword {
+    top: 16px;
+    left: 16px;
+  }
+
+  .card-saved__image {
+    height: 196px;
+    width: 288px;
+  }
+
+  .card-saved__bookmark {
+    top: 16px;
+    right: 16px;
+  }
+
+  .card-saved__content {
+    display: flex;
+    flex-direction: column;
+
+    margin: 16px 16px 16px;
+    max-height: 244px;
+  }
+
+  .card-saved__title {
+    max-height: 48px;
+    margin: 0 0 14px 0;
+  }
+}

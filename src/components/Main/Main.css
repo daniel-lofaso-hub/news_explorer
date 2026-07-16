@@ -1,0 +1,29 @@
+.main {
+  background-color: #f5f6f7;
+}
+
+.main__background {
+  background-image: url("../../assets/Background.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.main__header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px white;
+  padding: 0 104px 0;
+}
+
+@media screen and (max-width: 1300px) {
+  .main__header {
+    padding: 0 40px 0;
+  }
+}
+
+@media screen and (max-width: 775px) {
+  .main__header {
+    padding: 0 16px 0;
+  }
+}
